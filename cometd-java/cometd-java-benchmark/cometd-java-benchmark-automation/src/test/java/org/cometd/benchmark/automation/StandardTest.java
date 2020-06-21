@@ -39,6 +39,7 @@ import org.terracotta.angela.common.cluster.Barrier;
 import org.terracotta.angela.common.topology.ClientArrayTopology;
 
 import static org.terracotta.angela.client.config.custom.CustomMultiConfigurationContext.customMultiConfigurationContext;
+import static org.terracotta.angela.common.AngelaProperties.SSH_STRICT_HOST_CHECKING;
 import static org.terracotta.angela.common.clientconfig.ClientArrayConfig.newClientArrayConfig;
 
 public class StandardTest
@@ -50,6 +51,7 @@ public class StandardTest
 
         String propertiesPath = System.getProperty( "angela.properties" );
 
+        System.setProperty(SSH_STRICT_HOST_CHECKING.getPropertyName(), Boolean.FALSE.toString());
 
         TerracottaCommandLineEnvironment env = TerracottaCommandLineEnvironment.DEFAULT
             .withJavaVersion("1.8").withJavaVendors( "openjdk" );//.withJavaVendors("zulu").withJavaVersion("8");
