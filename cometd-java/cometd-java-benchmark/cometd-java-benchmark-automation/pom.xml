@@ -9,6 +9,10 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>cometd-java-benchmark-automation</artifactId>
   <name>CometD :: Java :: Benchmark :: Automation</name>
+  
+  <properties>
+    <angela.properties.file></angela.properties.file>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -38,5 +42,20 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <systemPropertyVariables>
+            <angela.ssh.userName>ubuntu</angela.ssh.userName>
+            <angela.properties.file>${angela.properties.file}</angela.properties.file>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

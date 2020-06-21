@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2008-2020 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.cometd.benchmark.automation;
 
 import java.io.File;
@@ -14,7 +29,9 @@ import org.terracotta.angela.client.Client;
 import org.terracotta.angela.client.ClientArray;
 import org.terracotta.angela.client.ClusterFactory;
 import org.terracotta.angela.client.config.ConfigurationContext;
+import org.terracotta.angela.client.config.custom.CustomRemotingConfigurationContext;
 import org.terracotta.angela.client.filesystem.RemoteFile;
+import org.terracotta.angela.client.remote.agent.SshRemoteAgentLauncher;
 import org.terracotta.angela.common.AngelaProperties;
 import org.terracotta.angela.common.TerracottaCommandLineEnvironment;
 import org.terracotta.angela.common.ToolExecutionResult;
@@ -29,13 +46,20 @@ public class StandardTest
     @Test
     void name() throws Exception
     {
-        System.setProperty(AngelaProperties.ROOT_DIR.getPropertyName(), "/var/tmp/angela");
+        System.setProperty(AngelaProperties.ROOT_DIR.getPropertyName(), "/tmp/angela");
 
-        TerracottaCommandLineEnvironment env = TerracottaCommandLineEnvironment.DEFAULT.withJavaVendors("zulu").withJavaVersion("8");
+        String propertiesPath = System.getProperty( "angela.properties" );
+
+
+        TerracottaCommandLineEnvironment env = TerracottaCommandLineEnvironment.DEFAULT
+            .withJavaVersion("1.8").withJavaVendors( "openjdk" );//.withJavaVendors("zulu").withJavaVersion("8");
 
         ConfigurationContext configContext = customMultiConfigurationContext()
-            .clientArray(clientArray -> clientArray.terracottaCommandLineEnvironment(env).clientArrayTopology(new ClientArrayTopology(newClientArrayConfig().host("localhost"))))
-            .clientArray(clientArray -> clientArray.terracottaCommandLineEnvironment(env).clientArrayTopology(new ClientArrayTopology(newClientArrayConfig().hostSerie(1, "localhost"))));
+            .remoting(new CustomRemotingConfigurationContext().remoteAgentLauncherSupplier( () -> new SshRemoteAgentLauncher(env)))
+            .clientArray(clientArray -> clientArray.terracottaCommandLineEnvironment(env)
+                .clientArrayTopology(new ClientArrayTopology(newClientArrayConfig().host("load-master"))))
+            .clientArray(clientArray -> clientArray.terracottaCommandLineEnvironment(env)
+                .clientArrayTopology(new ClientArrayTopology(newClientArrayConfig().hostSerie(1, "load-1"))));
 
         try (ClusterFactory factory = new ClusterFactory("StandardTest::name", configContext))
         {
