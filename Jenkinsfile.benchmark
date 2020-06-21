@@ -14,7 +14,7 @@ pipeline {
       steps {
         withMaven(
                 maven: 'maven3.5',
-                jdk: "$jdk",
+                jdk: "jdk8",
                 publisherStrategy: 'EXPLICIT',
                 globalMavenSettingsConfig: 'oss-settings.xml',
                 mavenOpts: '-Xms2g -Xmx2g -Djava.awt.headless=true',
