@@ -12,7 +12,6 @@ pipeline {
       agent { node { label 'load-master' } }
       options { timeout( time: 120, unit: 'MINUTES' ) }
       steps {
-          mavenBuild( "jdk8", "clean install javadoc:javadoc" )
         withMaven(
                 maven: 'maven3.5',
                 jdk: "$jdk",
