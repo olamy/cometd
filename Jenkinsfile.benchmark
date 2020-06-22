@@ -9,7 +9,7 @@ pipeline {
   }
   stages {
     stage( "Build / Test - JDK8" ) {
-      agent { node { label 'load-master' } }
+      agent { node { label 'master' } }
       options { timeout( time: 120, unit: 'MINUTES' ) }
       steps {
         withMaven(
