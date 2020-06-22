@@ -72,7 +72,10 @@ public class StandardTest
             System.err.println("Starting server(s)...");
             servers.executeOnAll(cluster ->
             {
-                CometDLoadServer.main(new String[]{"--auto", "--port=7070"});
+                System.out.println("--------------------------");
+                System.out.println("          SERVER          ");
+                System.out.println("--------------------------");
+                //CometDLoadServer.main(new String[]{"--auto", "--port=7070"});
             }).get();
 
             System.err.println("Starting client(s)...");
@@ -81,8 +84,10 @@ public class StandardTest
             {
                 Barrier barrier = cluster.barrier("clients", clientCount);
                 int clientID = barrier.await();
-
-                CometDLoadClient.main(new String[]{"--auto", "--port=7070", "--iterations=1", "--batches=6000", "--channel=/chan" + clientID});
+                System.out.println("--------------------------");
+                System.out.println("          CLIENT          ");
+                System.out.println("--------------------------");
+                //CometDLoadClient.main(new String[]{"--auto", "--port=7070", "--iterations=1", "--batches=6000", "--channel=/chan" + clientID});
             }).get();
             jcmd(clients, "JFR.dump", "name=cometd-client", "filename=cometd-client.jfr");
             jcmd(clients, "JFR.stop", "name=cometd-client");
