@@ -102,6 +102,7 @@
     <slf4j-version>2.0.16</slf4j-version>
     <spring-boot-version>3.3.2</spring-boot-version>
     <spring-version>6.1.11</spring-version>
+    <jacoco.all.result>${maven.multiModuleProjectDirectory}/target/jacoco_analysis/jacoco.exec</jacoco.all.result>
   </properties>
 
   <dependencyManagement>
@@ -360,6 +361,10 @@
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>0.8.12</version>
+          <configuration>
+            <destFile>${jacoco.all.result}</destFile>
+            <dataFile>${jacoco.all.result}</dataFile>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
