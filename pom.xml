@@ -91,6 +91,7 @@
   <properties>
     <graalvm-version>24.0.2</graalvm-version>
     <jackson-version>2.17.2</jackson-version>
+    <jacoco.all.result>${maven.multiModuleProjectDirectory}/target/jacoco_analysis/jacoco.exec</jacoco.all.result>
     <jakarta-ee-version>10.0.0</jakarta-ee-version>
     <!-- tag::jetty-version[] -->
     <jetty-version>12.0.12</jetty-version>
@@ -102,7 +103,6 @@
     <slf4j-version>2.0.16</slf4j-version>
     <spring-boot-version>3.3.2</spring-boot-version>
     <spring-version>6.1.11</spring-version>
-    <jacoco.all.result>${maven.multiModuleProjectDirectory}/target/jacoco_analysis/jacoco.exec</jacoco.all.result>
   </properties>
 
   <dependencyManagement>
