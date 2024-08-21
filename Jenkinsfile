@@ -24,9 +24,9 @@ pipeline {
               timeout(time: 1, unit: 'HOURS') {
                 mavenBuild("${env.JDK}", "clean install")
               }
-//              timeout(time: 15, unit: 'MINUTES') {
-//                mavenBuild("${env.JDK}", "javadoc:javadoc")
-//              }
+              timeout(time: 15, unit: 'MINUTES') {
+                mavenBuild("${env.JDK}", "javadoc:javadoc")
+              }
               recordIssues id: "analysis-${env.JDK}", name: "Static Analysis ${env.JDK}", aggregatingResults: true, enabledForFailure: true,
                            tools: [mavenConsole(), java(), checkStyle(), javaDoc()], skipPublishingChecks: true, skipBlames: true
               recordCoverage name: "Coverage ${env.JDK}", id: "coverage-${env.JDK}", tools: [[parser: 'JACOCO']], sourceCodeRetention: 'LAST_BUILD',
