@@ -364,6 +364,7 @@
           <configuration>
             <destFile>${jacoco.all.result}</destFile>
             <dataFile>${jacoco.all.result}</dataFile>
+            <append>true</append>
           </configuration>
         </plugin>
       </plugins>
