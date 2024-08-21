@@ -557,7 +557,7 @@
           <execution>
             <id>jacoco-report</id>
             <goals>
-              <goal>report-aggregate</goal>
+              <goal>report</goal>
             </goals>
             <phase>package</phase>
           </execution>
