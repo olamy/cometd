@@ -11,7 +11,7 @@
   <artifactId>cometd-coverage</artifactId>
   <packaging>pom</packaging>
 
-  <name>Cometd coverage</name>
+  <name>CometD :: Coverage</name>
   <description>Compute aggregated test code coverage</description>
 
   <properties>
@@ -23,6 +23,7 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>cometd-distribution</artifactId>
       <version>${project.version}</version>
+      <type>pom</type>
     </dependency>
   </dependencies>
 
