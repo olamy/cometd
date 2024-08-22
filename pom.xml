@@ -91,8 +91,6 @@
   <properties>
     <graalvm-version>24.0.2</graalvm-version>
     <jackson-version>2.17.2</jackson-version>
-    <!-- see why it's here in ./mvn/README -->
-    <jacoco.all.result>${maven.multiModuleProjectDirectory}/target/jacoco_analysis/jacoco.exec</jacoco.all.result>
     <jakarta-ee-version>10.0.0</jakarta-ee-version>
     <!-- tag::jetty-version[] -->
     <jetty-version>12.0.12</jetty-version>
@@ -363,8 +361,9 @@
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>0.8.12</version>
           <configuration>
-            <destFile>${jacoco.all.result}</destFile>
-            <dataFile>${jacoco.all.result}</dataFile>
+            <includes>
+              <include>org/cometd/**/*</include>
+            </includes>
           </configuration>
         </plugin>
       </plugins>

@@ -1,2 +1,0 @@
-to be able to have proper interpolation of ${maven.multiModuleProjectDirectory}, we need this .mvn directory
-with maven4 this can be removed and replace using something such ${session.rootDirectory}
