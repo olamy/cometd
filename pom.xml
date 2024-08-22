@@ -61,6 +61,7 @@
     <module>cometd-java</module>
     <module>cometd-javascript</module>
     <module>cometd-distribution</module>
+    <module>cometd-coverage</module>
   </modules>
 
   <scm>
@@ -553,13 +554,13 @@
               <append>true</append>
             </configuration>
           </execution>
-          <execution>
-            <id>jacoco-report</id>
-            <goals>
-              <goal>report</goal>
-            </goals>
-            <phase>package</phase>
-          </execution>
+          <!--          <execution>-->
+          <!--            <id>jacoco-report</id>-->
+          <!--            <goals>-->
+          <!--              <goal>report</goal>-->
+          <!--            </goals>-->
+          <!--            <phase>package</phase>-->
+          <!--          </execution>-->
         </executions>
       </plugin>
     </plugins>

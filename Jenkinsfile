@@ -29,7 +29,7 @@ pipeline {
               }
               recordIssues id: "analysis-${env.JDK}", name: "Static Analysis ${env.JDK}", aggregatingResults: true, enabledForFailure: true,
                            tools: [mavenConsole(), java(), checkStyle(), javaDoc()], skipPublishingChecks: true, skipBlames: true
-              recordCoverage name: "Coverage ${env.JDK}", id: "coverage-${env.JDK}", tools: [[parser: 'JACOCO']], sourceCodeRetention: 'LAST_BUILD',
+              recordCoverage name: "Coverage ${env.JDK}", id: "coverage-${env.JDK}", tools: [[parser: 'JACOCO',pattern: 'cometd-coverage/target/site/jacoco-aggregate/jacoco.xml']], sourceCodeRetention: 'LAST_BUILD',
                               sourceDirectories: [[path: 'glob:**/src/main/java']]
             }
           }
