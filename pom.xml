@@ -554,13 +554,6 @@
               <append>true</append>
             </configuration>
           </execution>
-          <!--          <execution>-->
-          <!--            <id>jacoco-report</id>-->
-          <!--            <goals>-->
-          <!--              <goal>report</goal>-->
-          <!--            </goals>-->
-          <!--            <phase>package</phase>-->
-          <!--          </execution>-->
         </executions>
       </plugin>
     </plugins>
