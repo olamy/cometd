@@ -22,7 +22,7 @@ pipeline {
             agent { node { label 'linux' } }
             steps {
               timeout(time: 1, unit: 'HOURS') {
-                mavenBuild("${env.JDK}", "clean install")
+                mavenBuild("${env.JDK}", "clean install -Penable-jacoco")
               }
               timeout(time: 15, unit: 'MINUTES') {
                 mavenBuild("${env.JDK}", "javadoc:javadoc")
