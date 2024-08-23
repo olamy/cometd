@@ -20,6 +20,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.cometd.java.tests</groupId>
+      <artifactId>cometd-java-tests-common</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>cometd-distribution</artifactId>
       <version>${project.version}</version>
